@@ -18,7 +18,7 @@ public class ArticleListFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.listfragment, container, false);
+		return inflater.inflate( android.R.layout.simple_list_item_1, container, false);
 	}
 
 	@Override
