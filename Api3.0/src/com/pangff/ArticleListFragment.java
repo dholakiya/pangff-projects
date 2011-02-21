@@ -1,7 +1,12 @@
 package com.pangff;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,15 +18,31 @@ public class ArticleListFragment  extends ListFragment{
 	  boolean mDualPane;//标示是否是横向布局，右侧reader视图是否可见
       int mCurCheckPosition = 0;//鼠标所选的标题索引
       int mShownCheckPosition = -1;//当前reader视图显示的内容索引
-      
+      String mCurCheckFileName = "";
+      String mShownCheckFileName = "";
+     
       @Override
       //当该fragment所属activity创建时
       public void onActivityCreated(Bundle savedInstanceState) {
+    	 
           super.onActivityCreated(savedInstanceState);
+         
+        
+        //  getResources().getAssets().openFd("").
+          File articlePath = this.getActivity().getDir("articleData",  Context.MODE_WORLD_WRITEABLE);
+          File[] articleFileList = articlePath.listFiles(); 
+          
+          List<String> articleNameList = new ArrayList<String>();
+          for(int i=0;i<articleFileList.length;i++){
+        	  File article = articleFileList[i];
+        	  Shakespeare.articleMap.put(i,article);
+        	  articleNameList.add(article.getName());
+          }
+
 
           // Populate list with our static array of titles.
           setListAdapter(new ArrayAdapter<String>(getActivity(),
-                  android.R.layout.simple_list_item_activated_1, Shakespeare.TITLES));
+                  android.R.layout.simple_list_item_activated_1, articleNameList));
 
           // Check to see if we have a frame in which to embed the details
           // fragment directly in the containing UI.
@@ -33,13 +54,15 @@ public class ArticleListFragment  extends ListFragment{
               mCurCheckPosition = savedInstanceState.getInt("curChoice", 0);
               mShownCheckPosition = savedInstanceState.getInt("shownChoice", -1);
           }
-
+          
+           
           if (mDualPane) {
               // In dual-pane mode, the list view highlights the selected item.
               getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
               // Make sure our UI is in the correct state.
               showDetails(mCurCheckPosition);
           }
+         
       }
 
       @Override
@@ -94,6 +117,6 @@ public class ArticleListFragment  extends ListFragment{
           }
       }
 	
-	
+     
 
 }
