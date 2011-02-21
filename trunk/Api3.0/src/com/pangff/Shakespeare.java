@@ -1,6 +1,11 @@
 package com.pangff;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 public final class Shakespeare {
+	public static Map<Integer,File>  articleMap = new HashMap<Integer,File>();
     /**
      * Our data, part 1.
      */

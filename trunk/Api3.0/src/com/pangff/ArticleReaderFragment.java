@@ -1,7 +1,15 @@
 package com.pangff;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import org.apache.http.util.EncodingUtils;
+
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -47,7 +55,26 @@ public class ArticleReaderFragment extends Fragment {
                 4, getActivity().getResources().getDisplayMetrics());
         text.setPadding(padding, padding, padding, padding);
         scroller.addView(text);
-        text.setText(Shakespeare.DIALOGUE[getArguments().getInt("index", 0)]);
+        int index = this.getArguments().getInt("index", 0);
+        String centent = "";
+        if(Shakespeare.articleMap.containsKey(index)){
+        	
+			try {
+				File article =  Shakespeare.articleMap.get(index);
+	        	InputStream in = new FileInputStream(article);
+				int lenght = in.available();
+				//创建byte数组
+				byte[]  buffer = new byte[lenght];
+				//将文件中的数据读到byte数组中
+				in.read(buffer);
+				centent = EncodingUtils.getString(buffer, "UTF-8");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        }
+        text.setText(centent);
         return scroller;
     }
 
