@@ -20,11 +20,16 @@
           android:id="@+id/okButton" 
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content" 
-          android:text="OK" /> 
+          android:text="确定" /> 
+           <Button 
+          android:id="@+id/backButton" 
+          android:layout_width="wrap_content" 
+          android:layout_height="wrap_content" 
+          android:text="返回" /> 
         <Button 
           android:id="@+id/cancelButton" 
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content" 
-          android:text="Cancel" /> 
+          android:text="取消" /> 
      </LinearLayout> 
  </LinearLayout> 
