@@ -42,7 +42,7 @@ public class ArticleListFragment  extends ListFragment{
 
           // Populate list with our static array of titles.
           setListAdapter(new ArrayAdapter<String>(getActivity(),
-                  android.R.layout.simple_list_item_activated_1, articleNameList));
+                  R.layout.simple_list_item_activated_1, articleNameList));
 
           // Check to see if we have a frame in which to embed the details
           // fragment directly in the containing UI.
@@ -93,7 +93,7 @@ public class ArticleListFragment  extends ListFragment{
               // the list to highlight the selected item and show the data.
               getListView().setItemChecked(index, true);
 
-              if (mShownCheckPosition != mCurCheckPosition) {
+            //  if (mShownCheckPosition != mCurCheckPosition) {
                   // If we are not currently showing a fragment for the new
                   // position, we need to create and install a new one.
                   ArticleReaderFragment df = ArticleReaderFragment.newInstance(index);
@@ -105,7 +105,7 @@ public class ArticleListFragment  extends ListFragment{
                   ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                   ft.commit();
                   mShownCheckPosition = index;
-              }
+            //  }
 
           } else {
               // Otherwise we need to launch a new activity to display
