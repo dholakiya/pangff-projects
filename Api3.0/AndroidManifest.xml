@@ -15,7 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+		<service android:name=".MusicServer">  
+		<intent-filter>  
+			<action android:name="com.firstDemo.android.MUSIC"/>  
+			<category android:name="android.intent.category.default" />  
+		</intent-filter>  
+		</service>  
     </application>
    
 

@@ -1,6 +1,8 @@
 package com.pangff;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,18 +29,25 @@ public class ArticleListFragment  extends ListFragment{
     	 
           super.onActivityCreated(savedInstanceState);
          
-        
-        //  getResources().getAssets().openFd("").
-          File articlePath = this.getActivity().getDir("articleData",  Context.MODE_WORLD_WRITEABLE);
-          File[] articleFileList = articlePath.listFiles(); 
-          
           List<String> articleNameList = new ArrayList<String>();
-          for(int i=0;i<articleFileList.length;i++){
-        	  File article = articleFileList[i];
-        	  Shakespeare.articleMap.put(i,article);
-        	  articleNameList.add(article.getName());
-          }
-
+        //  getResources().getAssets().openFd("").
+          File articlePath = this.getActivity().getDir("data",  Context.MODE_WORLD_WRITEABLE);
+          File readMeFile = new File(articlePath.getPath(),"readme.txt");
+         
+         
+          try {
+        	  if(!readMeFile.exists()){ 
+               	readMeFile.getParentFile().mkdirs(); 
+               	readMeFile.createNewFile();
+                writeFile(readMeFile,true,Shakespeare.readmeContent);
+              }
+        	 
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  articleNameList.add(readMeFile.getName());
+  		  Shakespeare.articleMap.put(0,readMeFile);
 
           // Populate list with our static array of titles.
           setListAdapter(new ArrayAdapter<String>(getActivity(),
@@ -64,6 +73,22 @@ public class ArticleListFragment  extends ListFragment{
           }
          
       }
+      
+      private void  writeFile(File file, boolean append,String content)   {
+    	             try    {
+    	               FileWriter filewriter  =   new  FileWriter(file, true);
+    	               // 删除原有文件的内容 
+    	              // java.io.RandomAccessFile initFile =   new  java.io.RandomAccessFile(file.getPath(), " rw " );
+    	              // initFile.setLength( 0 );
+    	                // 写入新的文件内容 
+    	               filewriter.write(content);
+    	               filewriter.close();
+    	               filewriter.flush();
+    	            }   catch  (Exception e)   {
+    	               e.printStackTrace();
+    	           } 
+    	       } 
+
 
       @Override
       /**
