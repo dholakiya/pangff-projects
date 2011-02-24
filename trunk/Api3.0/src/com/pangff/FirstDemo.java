@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class FirstDemo extends Activity {
 	Button searchButton = null;
 	List<File> txtFileInFolderList = new ArrayList<File>();
 	List<String> txtFileNameInFolderList= new ArrayList<String>();
+	private Intent intent = new Intent("com.firstDemo.android.MUSIC");
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
