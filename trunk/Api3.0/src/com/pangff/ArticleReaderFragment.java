@@ -61,6 +61,8 @@ public class ArticleReaderFragment extends Fragment {
         	
 			try {
 				File article =  Shakespeare.articleMap.get(index);
+				//标记当前阅读的文件
+				Shakespeare.currentReadFile = article;
 	        	InputStream in = new FileInputStream(article);
 				int lenght = in.available();
 				//创建byte数组
