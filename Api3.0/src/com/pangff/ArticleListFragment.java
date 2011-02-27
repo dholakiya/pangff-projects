@@ -11,6 +11,7 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -46,9 +47,31 @@ public class ArticleListFragment  extends ListFragment{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		  articleNameList.add(readMeFile.getName());
-  		  Shakespeare.articleMap.put(0,readMeFile);
-
+		 
+  		  
+  		  /**
+  		   * 首先要从数据库查出来上次阅读文件
+  		   * 若不存在，标记初始阅读的文件
+  		   */
+			 Log.v("!!!!!!!!!!", "!!!!!!!!!!readHistoryFile@@"+Shakespeare.readHistoryFile.getName());
+  		  if(Shakespeare.readHistoryFile!=null){
+  			Shakespeare.currentReadFile=Shakespeare.readHistoryFile;
+  		  }else{
+  			Shakespeare.currentReadFile=readMeFile;
+  		  }
+  		  Log.v("!!!!!!!!!!", "!!!!!!!!!!currentReadFile"+Shakespeare.currentReadFile.getName()); 
+  		  if(Shakespeare.currentReadFile.getParent()!=null){
+  			 File files[] =  Shakespeare.currentReadFile.getParentFile().listFiles();
+  			 for(int i=0;i< files.length;i++){
+    	 		  articleNameList.add(files[i].getName());
+    		  	  Shakespeare.articleMap.put(i,files[i]);
+    		  	  if(Shakespeare.currentReadFile.getPath().equals(files[i].getPath())
+    		  			  &&Shakespeare.currentReadFile.getName().equals(files[i].getName())){
+    		  		mCurCheckPosition = i;
+    		  	  }
+    		  }
+  		  }
+ 
           // Populate list with our static array of titles.
           setListAdapter(new ArrayAdapter<String>(getActivity(),
                   R.layout.simple_list_item_activated_1, articleNameList));
@@ -74,6 +97,9 @@ public class ArticleListFragment  extends ListFragment{
          
       }
       
+      
+      
+      
       private void  writeFile(File file, boolean append,String content)   {
     	             try    {
     	               FileWriter filewriter  =   new  FileWriter(file, true);
@@ -92,9 +118,10 @@ public class ArticleListFragment  extends ListFragment{
 
       @Override
       /**
-       * 先存储数据，在onActivityCreated里接收
+       *存储窗口状态
        */
       public void onSaveInstanceState(Bundle outState) {
+    	  Log.v("!!!!!!!!!!", "@@@@@@@@@@@@@@@@"); 
           super.onSaveInstanceState(outState);
           outState.putInt("curChoice", mCurCheckPosition);//初始为0
           outState.putInt("shownChoice", mShownCheckPosition);//初始为-1
