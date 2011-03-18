@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="activityTitlebar" parent="android:Theme">
+        <item name="android:windowTitleSize">15dp</item>
+         <item name="android:background">#EDF5FD</item>
+    </style>
+</resources>
+
+
