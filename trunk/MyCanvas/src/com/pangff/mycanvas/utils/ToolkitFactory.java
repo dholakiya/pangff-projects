@@ -21,6 +21,7 @@ public class ToolkitFactory {
 		switch(type){
 			case ToolsTypeConstants.PEN:
 				tool = new Pen(size,color);
+				break;
 			case ToolsTypeConstants.BEELINE:
 				tool = new Beeline(size,color);
 				break;
