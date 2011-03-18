@@ -41,12 +41,12 @@ public class CanvasView extends View implements  ColorPickerFragment.OnColorChan
 		mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 	}
 	
-	  @Override
-      protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-          super.onSizeChanged(w, h, oldw, oldh);
-          mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-          mycanvas = new Canvas(mBitmap);
-      }
+	@Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        mycanvas = new Canvas(mBitmap);
+    }
 	
 
 	public CanvasView(Context context, AttributeSet attrs) {
