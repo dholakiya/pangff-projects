@@ -17,6 +17,7 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_gravity="left"
+		android:background="#EDF5FD"
 		android:gravity="left"
 		>
    
