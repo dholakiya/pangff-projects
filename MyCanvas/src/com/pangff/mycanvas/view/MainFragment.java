@@ -3,6 +3,7 @@ package com.pangff.mycanvas.view;
 import com.pangff.mycanvas.activity.R;
 
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 public class MainFragment extends Fragment{
-	  private OnClickListener mClickListener;
+	  private CanvasView mClickListener;
 	  
 	  private OnClickListener menuClickListener;
 	  private String text;
@@ -42,6 +43,7 @@ public class MainFragment extends Fragment{
 	      circle.setOnClickListener(mClickListener);
 	      rect.setOnClickListener(mClickListener);
 	      cx.setOnClickListener(mClickListener);
+
 	      return mainFragment;
 	  }
 

@@ -29,6 +29,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,7 +41,7 @@ public class ColorPickerFragment extends Fragment {
         void colorChanged(int color);
     }
 
-    private OnColorChangedListener mListener;
+    private CanvasView mListener;
     private int mInitialColor;
 
     private static class ColorPickerView extends View {
@@ -103,9 +104,9 @@ public class ColorPickerFragment extends Fragment {
             setMeasuredDimension(CENTER_X*4, CENTER_Y*4);
         }
 
-        private static final int CENTER_X = 40;
-        private static final int CENTER_Y = 40;
-        private static final int CENTER_RADIUS = 16;
+        private static final int CENTER_X = 45;
+        private static final int CENTER_Y = 45;
+        private static final int CENTER_RADIUS = 12;
 
         private int floatToByte(float x) {
             int n = java.lang.Math.round(x);
@@ -231,10 +232,13 @@ public class ColorPickerFragment extends Fragment {
     	
 		mInitialColor = ((MianActivity)this.getActivity()).getInitColor();
 		
-		
     	OnColorChangedListener l = new OnColorChangedListener() {
             public void colorChanged(int color) {
-                mListener.colorChanged(color);
+            	if(R.id.pen_color_fragment==getId()){
+            		 mListener.changedPenColor(color);
+            	}else{
+            		 mListener.changedBackColor(color);
+            	}
             }
         };
       //  inflater.
