@@ -20,12 +20,30 @@
 		android:background="#EDF5FD"
 		android:gravity="left"
 		>
-   
-    <item android:id="@+id/action_add"
+	 <item android:id="@+id/action_undo"
+      android:showAsAction="always"
+      android:gravity="left"
+      android:onClick="onUndoClick"
+      android:icon="@drawable/undo" />  
+      
+     <item android:id="@+id/action_redo"
+      android:showAsAction="always"
+      android:gravity="left"
+      android:onClick="onRedoClick"
+      android:icon="@drawable/redo" />
+             
+   <item android:id="@+id/action_save"
           android:showAsAction="always"
           android:gravity="left"
-          android:icon="@drawable/help"
-          android:title="文件"  />
+          android:onClick="onSaveClick"
+          android:icon="@drawable/save" />
+          
+    <item android:id="@+id/action_help"
+          android:showAsAction="always"
+          android:gravity="left"
+          android:icon="@drawable/help" />
+          
+        
     
 </menu>
 
