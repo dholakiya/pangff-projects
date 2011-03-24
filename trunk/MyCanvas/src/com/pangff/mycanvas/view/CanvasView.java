@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 
 import com.pangff.mycanvas.constants.PenSizeConstants;
 import com.pangff.mycanvas.constants.ToolsTypeConstants;
+import com.pangff.mycanvas.interfaces.ISketchPadCallback;
 import com.pangff.mycanvas.interfaces.ISketchPadTool;
 import com.pangff.mycanvas.interfaces.IUndoCommand;
 import com.pangff.mycanvas.utils.BitmapUtil;
@@ -27,8 +28,6 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 	float currentPathY;
 	Paint paint;
 	Path path;
-	Canvas mycanvas;
-	private Bitmap mBitmap;
 	private Paint mBitmapPaint;
 
 	private ISketchPadTool m_curTool;
@@ -49,7 +48,16 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 	private boolean m_canClear = true;
 	public int m_canvasWidth = 100;
 	public int m_canvasHeight = 100;
+	private ISketchPadCallback m_callback = null;
 	public static final int UNDO_SIZE = 20;
+
+	public ISketchPadCallback getCallback() {
+		return m_callback;
+	}
+
+	public void setCallback(ISketchPadCallback mCallback) {
+		m_callback = mCallback;
+	}
 
 	public CanvasView(Context context) {
 		super(context);
@@ -64,8 +72,6 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 		}
 		m_canvasWidth = w;
 		m_canvasHeight = h;
-		m_canvas = new Canvas();
-		m_canvas = mycanvas;
 		m_isSetForeBmp = false;
 	}
 
@@ -95,20 +101,17 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 		// TODO Auto-generated constructor stub
 		super(context, attrs);
 
-		mBitmap = Bitmap.createBitmap(m_canvasWidth, m_canvasHeight,
-				Bitmap.Config.ARGB_8888);
-		
+		m_canvas = new Canvas();
 		m_curTool = ToolkitFactory.getTools(m_strokeType, m_penSize,
 				m_strokeColor);
 		mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-		m_undoStack = new SketchPadUndoStack(this, UNDO_SIZE, mBitmapPaint,
-				m_tempForeBitmap);
+		m_undoStack = new SketchPadUndoStack(this, UNDO_SIZE);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		canvas.drawColor(m_bkColor);
-		canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
+		canvas.drawBitmap(m_foreBitmap, 0, 0, mBitmapPaint);
 		if (null != m_curTool) {
 			if (ToolsTypeConstants.ERASER != m_strokeType) {
 				if (!m_isTouchUp) {
@@ -121,11 +124,20 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		if (null != m_callback) {
+			int action = event.getAction();
+			if (MotionEvent.ACTION_DOWN == action) {
+				m_callback.onTouchDown(this, event);
+			} else if (MotionEvent.ACTION_UP == action) {
+				m_callback.onTouchUp(this, event);
+			}
+		}
 		float x = event.getX();
 		float y = event.getY();
 		m_isTouchUp = false;
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN: {
+			m_curTool = ToolkitFactory.getTools(m_strokeType, m_penSize,m_strokeColor);
 			m_curTool.touchDown(x, y);
 			invalidate();
 			break;
@@ -133,7 +145,7 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 		case MotionEvent.ACTION_MOVE: {
 			m_curTool.touchMove(x, y);
 			if (ToolsTypeConstants.ERASER == m_strokeType) {
-				m_curTool.draw(mycanvas);
+				m_curTool.draw(m_canvas);
 			}
 			invalidate();
 			break;
@@ -145,7 +157,7 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 				m_undoStack.push(m_curTool);
 			}
 			m_curTool.touchUp(x, y);
-			m_curTool.draw(mycanvas);
+			m_curTool.draw(m_canvas);
 			invalidate();
 			break;
 		}
@@ -172,11 +184,6 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 			dialog = new MenuDialog(v.getContext(), this);
 			dialog.show();
 		}
-		if (m_strokeType != ToolsTypeConstants.CX) {
-			m_curTool = ToolkitFactory.getTools(m_strokeType, m_penSize,
-					m_strokeColor);
-		}
-
 	}
 
 	/**
