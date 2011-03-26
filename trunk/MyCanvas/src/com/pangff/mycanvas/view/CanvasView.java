@@ -179,14 +179,16 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 
 	@Override
 	public void onClick(View v) {
-		m_strokeType = v.getId();
-		switch(m_strokeType){
+		if(v.getId()!=ToolsTypeConstants.CX){
+			m_strokeType = v.getId();
+		}
+		switch(v.getId()){
 			case ToolsTypeConstants.CX:
-				dialog = new MenuDialog(v.getContext(), this,m_strokeType);
+				dialog = new MenuDialog(v.getContext(), this,v.getId());
 				dialog.show();
 				break;
 			case ToolsTypeConstants.BRUSH:
-				dialog = new MenuDialog(v.getContext(), this,m_strokeType);
+				dialog = new MenuDialog(v.getContext(), this,v.getId());
 				dialog.show();
 				break;
 		}
