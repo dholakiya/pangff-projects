@@ -3,6 +3,7 @@ package com.pangff.mycanvas.view;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -179,10 +180,15 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 	@Override
 	public void onClick(View v) {
 		m_strokeType = v.getId();
-		Log.v("curve", (m_strokeType == ToolsTypeConstants.CX1) + "");
-		if (m_strokeType == ToolsTypeConstants.CX) {
-			dialog = new MenuDialog(v.getContext(), this);
-			dialog.show();
+		switch(m_strokeType){
+			case ToolsTypeConstants.CX:
+				dialog = new MenuDialog(v.getContext(), this,m_strokeType);
+				dialog.show();
+				break;
+			case ToolsTypeConstants.BRUSH:
+				dialog = new MenuDialog(v.getContext(), this,m_strokeType);
+				dialog.show();
+				break;
 		}
 	}
 
@@ -194,6 +200,14 @@ public class CanvasView extends View implements OnClickListener, IUndoCommand {
 	public void setStrokeWidth(int size) {
 		m_penSize = size;
 		m_curTool.setStrokeWidth(m_penSize);
+	}
+	
+	/**
+	 * 设置刷子
+	 * @param foreBitmap
+	 */
+	public void setBrush(int brushType){
+		m_strokeType = brushType;
 	}
 
 	public void setForeBitmap(Bitmap foreBitmap) {

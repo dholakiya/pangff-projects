@@ -37,13 +37,14 @@ public class MainFragment extends Fragment{
 	      ImageButton circle = (ImageButton)mainFragment.findViewById(R.id.ty);
 	      ImageButton rect = (ImageButton)mainFragment.findViewById(R.id.zfx);
 	      ImageButton cx = (ImageButton)mainFragment.findViewById(R.id.cx);
+	      ImageButton sz = (ImageButton)mainFragment.findViewById(R.id.sz);
 	      pen.setOnClickListener(mClickListener);
 	      zx.setOnClickListener(mClickListener);
 	      eraser.setOnClickListener(mClickListener);
 	      circle.setOnClickListener(mClickListener);
 	      rect.setOnClickListener(mClickListener);
 	      cx.setOnClickListener(mClickListener);
-
+	      sz.setOnClickListener(mClickListener);
 	      return mainFragment;
 	  }
 
