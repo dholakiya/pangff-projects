@@ -31,5 +31,14 @@ public  class  ToolsTypeConstants {
 	
 	//粗细3
 	public static final int CX3 = R.id.cx3;
+	
+	//刷子
+	public static final int BRUSH = R.id.sz;
+	
+	//刷子1
+	public static final int BRUSH1 = R.id.brush1;
+	
+	//刷子2
+	public static final int BRUSH2 = R.id.brush2;
 
 }

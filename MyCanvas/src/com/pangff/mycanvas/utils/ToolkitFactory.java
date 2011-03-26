@@ -3,6 +3,7 @@ package com.pangff.mycanvas.utils;
 import com.pangff.mycanvas.constants.ToolsTypeConstants;
 import com.pangff.mycanvas.interfaces.ISketchPadTool;
 import com.pangff.mycanvas.tools.Beeline;
+import com.pangff.mycanvas.tools.Brush;
 import com.pangff.mycanvas.tools.Circle;
 import com.pangff.mycanvas.tools.Eraser;
 import com.pangff.mycanvas.tools.Pen;
@@ -33,6 +34,12 @@ public class ToolkitFactory {
 				break;
 			case ToolsTypeConstants.Rect:
 				tool = new Rect(size,color);
+				break;
+			case ToolsTypeConstants.BRUSH1:
+				tool = new Brush(size,color,ToolsTypeConstants.BRUSH1);
+				break;
+			case ToolsTypeConstants.BRUSH2:
+				tool = new Brush(size,color,ToolsTypeConstants.BRUSH2);
 				break;
 		}
 		return tool;
