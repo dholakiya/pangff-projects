@@ -105,7 +105,7 @@ public class MianActivity extends Activity implements ISketchPadCallback{
     }
 
 	public int getInitColor(){
-		return Color.BLUE;
+		return Color.BLACK;
 	}
 	
     public String getStrokeFilePath(){
