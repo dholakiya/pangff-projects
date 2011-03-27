@@ -10,10 +10,12 @@ import java.util.Calendar;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ActionBar.Tab;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -24,6 +26,7 @@ import com.pangff.mycanvas.utils.BitmapUtil;
 import com.pangff.mycanvas.utils.TabListener;
 import com.pangff.mycanvas.view.CanvasView;
 import com.pangff.mycanvas.view.MainFragment;
+import com.pangff.mycanvas.view.SearchFileDialog;
 
 public class MianActivity extends Activity implements ISketchPadCallback{
 
@@ -73,7 +76,14 @@ public class MianActivity extends Activity implements ISketchPadCallback{
     }
 
     public void onSaveClick(MenuItem item) {
-    	String strFilePath = getStrokeFilePath();
+    	SearchFileDialog dialog = new SearchFileDialog(MianActivity.this);
+    	dialog.show();
+    	//String strFilePath = getStrokeFilePath();
+    }
+    
+    public void saveDo(String strFilePath){
+    	//String strFilePath = dialog.getCurrentPath().getPath();
+    	Log.v("PATHSSSS", strFilePath);
  	    Bitmap bmp = canvasView.getCanvasSnapshot();
  	    String strFileName = getStrokeFileName();
  	    if (null != bmp){
