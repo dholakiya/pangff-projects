@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="activityTitlebar" parent="android:Theme">
+        <item name="android:windowTitleSize">15dp</item>
+         <item name="android:background">#EDF5FD</item>
+    </style>
+    
+    <style name="Theme.MianActivity" parent="android:style/Theme.Holo">     
+    <item name="android:actionBarStyle">@style/ActionBar</item> 
+    </style> 
+     
+    <style name="ActionBar" parent="android:style/Widget.Holo.ActionBar">    
+     <item name="android:background">#DFE9F5</item>
+     <item name="android:textColor">#FFFFFF</item>  
+    </style> 
+</resources>
+
+
