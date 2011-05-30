@@ -92,14 +92,14 @@ public class GameThread extends Thread{
 	public void run(){
 		while(flag){
 				//移动小球
-				checkAndMoveBall();
-				try{
-					Thread.sleep(sleepSpan);
-				}
-				catch(Exception e){
-					e.printStackTrace();
-				}
-			}			
+		checkAndMoveBall();
+		try{
+			Thread.sleep(sleepSpan);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		}
 			
 	}
 }
