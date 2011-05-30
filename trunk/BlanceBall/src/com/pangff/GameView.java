@@ -1,6 +1,7 @@
 package com.pangff;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -34,7 +35,7 @@ public class GameView extends SurfaceView implements Callback {
 	
 	//屏幕绘制方法
 	public void doDraw(Canvas canvas){
-	
+		canvas.drawColor(Color.BLUE);
 		ball.drawSelf(canvas);
 	}
 	

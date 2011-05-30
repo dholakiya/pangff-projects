@@ -23,7 +23,7 @@ public class BlanceBallActivity extends Activity {
            setContentView(gv);
            bl = new BallListener(this); //创建SensorManager
            mySensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
-           sensor = mySensorManager.getDefaultSensor(SensorManager.SENSOR_ORIENTATION);  
-           mySensorManager.registerListener( bl,sensor,SensorManager.SENSOR_DELAY_GAME);   
+          // sensor = mySensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);  
+           mySensorManager.registerListener(bl,SensorManager.SENSOR_ORIENTATION,SensorManager.SENSOR_DELAY_GAME);   
     }
 }

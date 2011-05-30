@@ -16,30 +16,30 @@ public class DrawThread extends Thread{
 		this.flag = true;
 	}
 	public void run(){
-		Canvas c;
+		
 		while(flag){
-			c = null;
-			try {
-				// 锁定整个画布，在内存要求比较高的情况下，建议参数不要为null
-			    c = surfaceHolder.lockCanvas(null);
-			    synchronized (this.surfaceHolder) {
-			    	try{
-			    		gv.doDraw(c);
-			    	}
-			    	catch(Exception e){}
-			    }
-			} finally {
-			    if (c != null) {
-			    	//更新屏幕显示内容
-			        surfaceHolder.unlockCanvasAndPost(c);
-			    }
+			Canvas c;
+				c = null;
+				try {
+					// 锁定整个画布，在内存要求比较高的情况下，建议参数不要为null
+				    c = surfaceHolder.lockCanvas(null);
+				    synchronized (this.surfaceHolder) {
+				    		gv.doDraw(c);
+				    }
+				}catch(Exception e){
+					
+				} finally {
+				    if (c != null) {
+				    	//更新屏幕显示内容
+				        surfaceHolder.unlockCanvasAndPost(c);
+				    }
+				}
+				try{
+					Thread.sleep(sleepSpan);//睡眠sleepSpan毫秒
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
 			}
-			try{
-				Thread.sleep(sleepSpan);//睡眠sleepSpan毫秒
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-		}
 	}
 }
