@@ -57,7 +57,8 @@ public class RotateUtil{
 		return gVector;
 	}	
 	//方法：计算小球的方向
-	public static int getDirectionCase(double[] values){
+	public static double[] getDirectionCase(double[] values){
+		double result[] = {0,0,0};
 		double zAngle=-Math.toRadians(values[0]);//获取z轴旋转角度弧度
 		double xAngle=-Math.toRadians(values[1]);//获取x轴旋转角度弧度
 		double yAngle=-Math.toRadians(values[2]);//获取y轴旋转角度弧度
@@ -98,37 +99,40 @@ public class RotateUtil{
 		gVector=RotateUtil.YRotate(yAngle,gVector);		
 		double mapX=gVector[0];		//mapX为重力向量在X、Y轴平面上的投影的X坐标
 		double mapY=gVector[1];		//mapY为重力向量在X、Y轴平面上的投影的Y坐标
+		result[1] = Math.abs(mapX) ;
+		result[2] = Math.abs(mapY);
 		if(mapX==0){				//如果mapX等于0
 			if(mapY>0){				//mapY大于0
-				return 0;			//返回方向为0，向上
+				result[0] = 0;			//返回方向为0，向上
 			}
 			else{					//mapY小于0
-				return 4;			//返回4，方向为向下
+				result[0] = 4;			//返回4，方向为向下
 			}
 		}
 		else{
 			if(mapY==0){			//如果mapY等于0
 				if(mapX>0){			//如果mapX大于0
-					return 2;		//返回2，方向向右
+					result[0] = 2;		//返回2，方向向右
 				}
 				else{				//如果mapX小于0
-					return 6;		//返回6，方向向左
+					result[0] = 6;		//返回6，方向向左
 				}
 			}
 			else{
 				if(mapX>0&&mapY>0){	//如果向量位于第一象限
-					return 1;		//返回1，方向右上
+					result[0] = 1;		//返回1，方向右上
 				}
 				else if(mapX>0&&mapY<0){	//如果向量位于第四象限
-					return 3;				//返回3，方向右下
+					result[0] =3;				//返回3，方向右下
 				}
 				else if(mapX<0&&mapY>0){	//如果向量位于第二象限
-					return 7;				//返回7，方向左上
+					result[0] = 7;			//返回7，方向左上
 				}
 				else{						//向量位于第三象限
-					return 5;				//返回5，方向左下
+					result[0] = 5;			//返回5，方向左下
 				}
 			}
 		}
+		return  result;
 	}	
 }
