@@ -10,12 +10,15 @@ public class Ball {
 	Bitmap bmpBall; //小球贴图	
 	int ballX;
 	int ballY;
-	int velocity = 4;			//小球运动速度
+	double ax = 0;
+	double ay = 0;
+	double vy = 0;			//小球运动速度y
+	double vx = 0;			//小球运动速度x
 	public Ball(BlanceBallActivity father){
 		Resources r = father.getResources();
 		this.bmpBall = BitmapFactory.decodeResource(r, R.drawable.ball);
-		this.ballX = 0;
-		this.ballY = 0;
+		this.ballX = 500;
+		this.ballY = 300;
 	}
 	
 	public void drawSelf(Canvas canvas){
