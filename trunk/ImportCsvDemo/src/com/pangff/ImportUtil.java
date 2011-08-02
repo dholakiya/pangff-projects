@@ -41,10 +41,10 @@ public class ImportUtil {
     	//db.close();
     }
     
-    public Map<String,String> select(){
+    public Map<String,String> selectAll(){
     	Map<String,String> data = new HashMap<String,String>();
     	String sql = "select * from readinfo";
-    	Cursor cursor= DBUtil.exSelectSQL(db, sql);
+    	Cursor cursor= DBUtil.exSelectSQL(db, sql ,null);
     	while (cursor.moveToNext()) {  
 		    data.put("applicant", cursor.getString(0));
 		    data.put("applicant_enu", cursor.getString(1));
@@ -62,5 +62,17 @@ public class ImportUtil {
     	Log.v("!!!!!!!!!!", "!!!!!!!!!!select"); 
 		//db.close();
 		return data;
+    }
+    
+    public int selectCountById(String record_no){
+    	String id[] = {record_no};
+    	int count = 0;
+    	String sql = "select count(record_no) from readinfo where record_no=?";
+    	Cursor cursor= DBUtil.exSelectSQL(db, sql ,id);
+    	while (cursor.moveToNext()) {  
+    		count = cursor.getInt(0);
+		}  
+    	cursor.close();  
+		return count;
     }
 }

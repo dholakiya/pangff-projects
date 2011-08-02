@@ -1,9 +1,10 @@
 package com.pangff;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,13 +12,11 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SearchFileDialog extends Dialog{
@@ -92,9 +91,9 @@ public class SearchFileDialog extends Dialog{
 	 * 点击了确定按钮
 	 */
 	private void onOkButtonClick(){
-		FileReader reader;
+		InputStreamReader reader;
 		try {
-			reader = new FileReader(currentPath);
+			reader  = new InputStreamReader(new FileInputStream(currentPath), "gb2312");
 			importCsvDemoActivity.doImport(reader);
 			reader.close();
 		} catch (Exception e) {
