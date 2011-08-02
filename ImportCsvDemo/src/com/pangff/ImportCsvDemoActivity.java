@@ -1,7 +1,7 @@
 package com.pangff;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class ImportCsvDemoActivity extends Activity {
 	 * @param reader
 	 * @throws IOException
 	 */
-	public void doImport(FileReader reader) throws IOException {
+	public void doImport(InputStreamReader reader) throws IOException {
 		ImportCsv ic = new ImportCsv(db,this);
 		ic.importCsv(reader);
 	}

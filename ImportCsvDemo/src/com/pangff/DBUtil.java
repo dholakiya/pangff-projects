@@ -68,8 +68,8 @@ public class DBUtil{
 	/**
 	 * 查询
 	 */
-	public static Cursor exSelectSQL(SQLiteDatabase dataBase,String sql){
-		Cursor cursor = dataBase.rawQuery(sql, null);  
+	public static Cursor exSelectSQL(SQLiteDatabase dataBase,String sql,String[] bindArgs){
+		Cursor cursor = dataBase.rawQuery(sql, bindArgs);  
 		return cursor;
 	}
 }

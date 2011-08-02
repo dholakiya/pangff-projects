@@ -18,10 +18,12 @@ package com.pangff;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Map;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ImportCsv {
 	SQLiteDatabase db;
@@ -45,28 +47,18 @@ public class ImportCsv {
 		CSVReader csvreader = new CSVReader(reader);
 	    String [] nextLine;
 	    while ((nextLine = csvreader.readNext()) != null) {
-	        // nextLine[] is an array of values from the line
-	    	
-	    	// We use the first column as note
-	    	String applicant = nextLine[0];
-	    	String applicant_enu = nextLine[1];
-	    	String ipr_title = nextLine[2];
-	    	String arp_name = nextLine[3];
-	    	String pc = nextLine[4];
-	    	String ipr_no = nextLine[5];
+	     
 	    	String record_no = nextLine[6];
-	    	String name = nextLine[7];
-	    	String company = nextLine[8];
-	    	String tel = nextLine[9];
-	    	String email = nextLine[10];
-	    	Log.v("Data", applicant+","+applicant_enu+","+ipr_title+","+arp_name+","+pc+","+ipr_no+","+record_no+","+name+","+company+","+tel+","+email);
-	    	// And ignore the other columns
-	    	
-	    	// Third column would be category.
-	    	importUtil.insert(nextLine);
-	    	//NotepadUtils.addNote(mContext, note);
+	    	if(record_no!=null && !record_no.equals("")){
+	    		int count = importUtil.selectCountById(record_no);
+	    		if(count==0){
+	    	    	importUtil.insert(nextLine);
+	    		}else{
+		    		Toast.makeText(mContext, "记录编号:"+record_no+"的记录已存在", Toast.LENGTH_SHORT).show();
+		    	}
+	    	}
 	    }
-	    mContext.showImportData(importUtil.select());
+	    mContext.showImportData(importUtil.selectAll());
 	}
 
 }
