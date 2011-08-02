@@ -46,16 +46,19 @@ public class ImportCsv {
 		
 		CSVReader csvreader = new CSVReader(reader);
 	    String [] nextLine;
+	    int index = 0;
 	    while ((nextLine = csvreader.readNext()) != null) {
-	     
+	    	index++;
 	    	String record_no = nextLine[6];
 	    	if(record_no!=null && !record_no.equals("")){
 	    		int count = importUtil.selectCountById(record_no);
 	    		if(count==0){
 	    	    	importUtil.insert(nextLine);
 	    		}else{
-		    		Toast.makeText(mContext, "记录编号:"+record_no+"的记录已存在", Toast.LENGTH_SHORT).show();
+		    		Toast.makeText(mContext, "记录编号:"+record_no+"的记录已存在!", Toast.LENGTH_SHORT).show();
 		    	}
+	    	}else{
+	    		Toast.makeText(mContext, "第"+index+"行记录编号为空!", Toast.LENGTH_SHORT).show();
 	    	}
 	    }
 	    mContext.showImportData(importUtil.selectAll());
