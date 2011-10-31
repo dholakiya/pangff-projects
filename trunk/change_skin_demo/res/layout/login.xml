@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="10"
+    android:id="@+id/mainLayout"
+    android:background="@drawable/skin_pink"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <Button 
+        android:layout_width="150dip"
+    	android:layout_height="150dip"
+    	android:id="@+id/femaleButton"
+    	android:onClick="femaleLogin"
+    	android:text="@string/female_login_text"
+        />
+ 	<Button 
+        android:layout_width="150dip"
+    	android:layout_height="150dip"
+    	android:id="@+id/maleButton"
+    	android:onClick="maleLogin"
+    	android:text="@string/male_login_text"
+        />
+</LinearLayout>
