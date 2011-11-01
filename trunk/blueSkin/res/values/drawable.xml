@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  	<drawable name="skin_pink">#E158D6</drawable >
+    <drawable name="skin_pink_bar">#661178</drawable >
+    <drawable name="skin_blue">#0c6B8D</drawable >
+    <drawable name="skin_blue_bar">#023141</drawable>
+    
+    <drawable name="skin">#0c6B8D</drawable >
+    <drawable name="skin_bar">#023141</drawable>
+</resources>
