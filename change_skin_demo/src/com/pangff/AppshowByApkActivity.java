@@ -69,22 +69,24 @@ public class AppshowByApkActivity extends Activity {
     	
     	
     	ArrayList<PackageInfo> skinList = getSkin(login_flag);
-    	try {
-			skinContext = createPackageContext(skinList.get(0).packageName,Context.CONTEXT_IGNORE_SECURITY);
-		} catch (NameNotFoundException e) {
-			// TODO Auto-generated catch block
-			skinContext = this;
-		}
-		if(skinContext != null){
-			this.mainLayout.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin));
-			this.titleBar.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
-			this.rangButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
-			this.activityButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
-			this.shareButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
-			this.circleButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
-			this.image.setImageDrawable(skinContext.getResources().getDrawable(R.drawable.image));
+    	if(skinList!=null && skinList.size()>0){
+    		try {
+    			skinContext = createPackageContext(skinList.get(0).packageName,Context.CONTEXT_IGNORE_SECURITY);
+    		} catch (NameNotFoundException e) {
+    			// TODO Auto-generated catch block
+    			skinContext = this;
+    		}
+    		if(skinContext != null){
+    			this.mainLayout.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin));
+    			this.titleBar.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
+    			this.rangButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
+    			this.activityButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
+    			this.shareButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
+    			this.circleButton.setBackgroundColor(skinContext.getResources().getColor(R.drawable.skin_bar));
+    			this.image.setImageDrawable(skinContext.getResources().getDrawable(R.drawable.image));
 
-		}
+    		}
+    	}
     }
     
     /**
