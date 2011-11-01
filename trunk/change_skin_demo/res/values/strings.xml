@@ -5,9 +5,9 @@
     <string name="app_name">Appshow</string>
     
      <!-- 女性登陆按钮-->
-    <string name="female_login_text">女性登录</string>
+    <string name="female_login_text">粉色主题</string>
      <!-- 男性登陆按钮-->
-    <string name="male_login_text">男性登录</string>
+    <string name="male_login_text">蓝色主题</string>
     
         
     <!-- 标题 -->
