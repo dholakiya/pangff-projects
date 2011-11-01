@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pangff"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" android:sharedUserId="com.appshow.skin">
 
     <uses-sdk android:minSdkVersion="10" />
 
@@ -22,6 +22,16 @@
         <activity
             android:label="@string/app_name"
             android:name=".AppshowActivity" >
+        </activity>
+        
+         <activity
+            android:label="@string/app_name"
+            android:name=".AppshowByXmlActivity" >
+        </activity>
+        
+        <activity
+            android:label="@string/app_name"
+            android:name=".AppshowByApkActivity" >
         </activity>
     </application>
 
