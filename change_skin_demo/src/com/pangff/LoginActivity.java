@@ -46,8 +46,17 @@ public class LoginActivity extends Activity{
      */
     private void login(){
     	 Intent intent = new Intent();  
-         intent.putExtra("login_flag", login_flag);  
-         intent.setClass(LoginActivity.this, AppshowActivity.class);  
+         intent.putExtra("login_flag", login_flag); 
+         
+         //程序中换皮肤
+         //intent.setClass(LoginActivity.this, AppshowActivity.class);
+         
+         //Xml换皮肤
+         //intent.setClass(LoginActivity.this, AppshowByXmlActivity.class);
+         
+         //Apk换皮肤
+         intent.setClass(LoginActivity.this, AppshowByApkActivity.class);
+         
          startActivity(intent);  
     }
 }

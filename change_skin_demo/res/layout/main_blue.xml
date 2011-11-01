@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:layout_weight="10"
     android:id="@+id/mainLayout"
-    android:background="@drawable/skin_pink"
+    android:background="@drawable/skin_blue"
     android:orientation="vertical" >
 
 	<!-- 上部标题 -->
@@ -13,7 +13,7 @@
     	android:layout_weight="1"
     	android:id="@+id/titleBar"
     	android:layout_height="20dip"
-    	android:background="@drawable/skin_pink_bar"
+    	android:background="@drawable/skin_blue_bar"
     	android:layout_gravity="center_horizontal"
    	 	android:orientation="vertical"  
    	 	>
@@ -52,9 +52,7 @@
     </LinearLayout>
     
     <!-- 下部 菜单 -->
-
-
-
+
      <LinearLayout
          android:layout_width="fill_parent"
          android:layout_height="50dip"
@@ -82,7 +80,7 @@
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:layout_weight="1"
-                     android:background="@drawable/skin_pink_bar"
+                     android:background="@drawable/skin_blue_bar"
                      android:id="@+id/rangButton"
                      android:text="@string/rang_button_text" />
 				 <TextView 
@@ -93,7 +91,7 @@
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:layout_weight="1"
-                      android:background="@drawable/skin_pink_bar"
+                      android:background="@drawable/skin_blue_bar"
                      android:id="@+id/shareButton"
                      android:text="@string/share_button_text" />
              </LinearLayout>
@@ -112,7 +110,7 @@
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:id="@+id/activityButton"
-                     android:background="@drawable/skin_pink_bar"
+                     android:background="@drawable/skin_blue_bar"
                      android:layout_weight="1"
                      android:text="@string/activity_button_text" />
 				<TextView 
@@ -123,7 +121,7 @@
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:layout_weight="1"
-                       android:background="@drawable/skin_pink_bar"
+                       android:background="@drawable/skin_blue_bar"
                      android:id="@+id/circleButton"
                      android:text="@string/circle_button_text" />
              </LinearLayout>
@@ -144,7 +142,7 @@
                  android:layout_gravity="right"
                  android:id="@+id/image"
                  android:layout_marginRight="0dip"
-                 android:src="@drawable/female"/>
+                 android:src="@drawable/male"/>
          </LinearLayout>
          
      </LinearLayout>

@@ -30,7 +30,7 @@ public class AppshowActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.main_pink);
         
         //获取登陆信息
         Intent intent = getIntent(); 
