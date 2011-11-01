@@ -1,0 +1,7 @@
+可以通过修改 LoginActivity中login方法，根据注释采用不同方法实现更换皮肤。
+注意：
+  1、每次只能打开一个注释，采用一种方法
+  2、默认采用Apk方式，两种皮肤地址。
+   	请checkout http://pangff-projects.googlecode.com/svn/trunk/blueSkin
+          请checkout http://pangff-projects.googlecode.com/svn/trunk/pinkSkin
+         
