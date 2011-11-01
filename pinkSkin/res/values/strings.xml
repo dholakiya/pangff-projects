@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AppshowActivity!</string>
+    <string name="app_name">Appshow</string>
+    
+     <!-- 女性登陆按钮-->
+    <string name="female_login_text">女性登录</string>
+     <!-- 男性登陆按钮-->
+    <string name="male_login_text">男性登录</string>
+    
+        
+    <!-- 标题 -->
+    <string name="title_text">App Show</string>
+    <!-- 排序按钮 -->
+    <string name="rang_button_text">排序</string>
+    <!-- 动态按钮-->
+    <string name="activity_button_text">动态</string>
+    <!-- 分享按钮-->
+    <string name="share_button_text">分享</string>
+    <!-- 圈子按钮-->
+    <string name="circle_button_text">圈子</string>
+
+</resources>
